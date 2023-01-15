@@ -50,7 +50,7 @@ router.put("/:id", async (req, res, next) => {
     console.log(paid_date);
     const result = await db.query(
       `UPDATE invoices SET amt=$1, paid=$2, add_date=$3, paid_date=$4 WHERE id=$5 RETURNING *`,
-      [amt, paid, add_date, null, req.params.id]
+      [amt, paid, add_date, paid_date, req.params.id]
     );
     return res.json({ updated: result.rows[0] });
   } catch (e) {
